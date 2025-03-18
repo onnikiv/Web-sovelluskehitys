@@ -1,1 +1,1 @@
-## JS-Recap 1 - Conditional expressions and loops
+## WEEK-1 Javascript Recaps 1 & 2
