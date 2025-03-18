@@ -6,17 +6,16 @@ This folder contains the first week's assignments for the Web Development course
 
 ## HTML & CSS Assignments
 All of the code for my assignments can be found in the folder:
-* **HTML-CSS**
+**``HTML-CSS``**
 
-Here is the link to my index containing these HTML & CSS assignments:
-
-[HTML & CSS Assignments Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/HTML-CSS-assignments/)
+Link to Index:
+[HTML & CSS Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/Week-1/HTML-CSS/)
 
 ## JavaScript Assignments
 All of the code for my assignments can be found in the folder:
-* **JavaScript**
+**``JavaScript``**
 
 Here is the link to my index containing these JavaScript assignments:
 
-[JavaScript Assignments Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/JS-assignments/)
+LINK TO INDEX: [JavaScript Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/Week-1/Javascript/)
 ___
