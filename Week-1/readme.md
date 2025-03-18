@@ -1,3 +1,5 @@
+TODO: fix when assignments ready :)
+
 # Week 1
 
 This folder contains the first week's assignments for the Web Development course at Metropolia.
