@@ -1,21 +1,20 @@
-# WEEK 1
+# Week 1
 
-This folder contains the `1st` week's assignments regarding the Web-Development course in Metropolia.
+This folder contains the first week's assignments for the Web Development course at Metropolia.
 
 ## HTML & CSS Assignments
-All of the __code__ for my assignments can be found in the folder:
-* __``HTML-CSS-assignments``__
+All of the code for my assignments can be found in the folder:
+* **HTML-CSS-assignments**
 
+Here is the link to my index containing these HTML & CSS assignments:
 
-Here is the __link__ to my index containing these ``HTML & CSS`` assignments:
-
-[Link to my Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/HTML-CSS-assignments/)
+[HTML & CSS Assignments Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/HTML-CSS-assignments/)
 
 ## JavaScript Assignments
-All of the __code__ for my assignments can be found in the folder:
-* __``JS-assignments``__
+All of the code for my assignments can be found in the folder:
+* **JS-assignments**
 
-Here is the __link__ to my index containing these ``javascript`` assignments:
+Here is the link to my index containing these JavaScript assignments:
 
-[Link to my Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/JS-assignments/)
+[JavaScript Assignments Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/JS-assignments/)
 ___
