@@ -4,7 +4,7 @@ This folder contains the first week's assignments for the Web Development course
 
 ## HTML & CSS Assignments
 All of the code for my assignments can be found in the folder:
-* **HTML-CSS-assignments**
+* **HTML-CSS**
 
 Here is the link to my index containing these HTML & CSS assignments:
 
@@ -12,7 +12,7 @@ Here is the link to my index containing these HTML & CSS assignments:
 
 ## JavaScript Assignments
 All of the code for my assignments can be found in the folder:
-* **JS-assignments**
+* **JavaScript**
 
 Here is the link to my index containing these JavaScript assignments:
 
