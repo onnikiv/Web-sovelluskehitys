@@ -3,10 +3,15 @@
 This folder contains the `1st` week's assignments regarding the Web-Development course in Metropolia.
 ## Contents
 
-### HTML and CSS Assignments
-The HTML-CSS-assignments folder contains all of the code for the assignments
-* [Link to my Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/HTML-CSS-assignments/)    -> ``users.metropolia.fi/~onnikiv/``
-* [Link to the Folder](https://github.com/onnikiv/Web-sovelluskehitys/tree/main/WEEK1/HTML-CSS-assignments) -> Lazy
+### HTML & CSS Assignments
+All of the code for my assignments can be found in the folder:
+> ``HTML-CSS-assignments``
+
+Here is the link to my ``users.metropolia.fi/~``:
+>[(Link to my Index)](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/HTML-CSS-assignments/)
 
 ### JavaScript Assignments
-* [JavaScript Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/JS-assignments/)
+All of the code for my Javascript assignments can be found in the ``HTML-CSS-assignments``-folder.
+
+* [Link to my Index](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/JS-assignments/)
+* [Link to the Folder](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/WEEK1/JS-assignments/)
