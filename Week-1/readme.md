@@ -1,5 +1,3 @@
-TODO: fix when assignments ready :)
-
 # Week 1
 
 This folder contains the first week's assignments for the Web Development course at Metropolia.
@@ -17,5 +15,5 @@ All of the code for my assignments can be found in the folder:
 
 Here is the link to my index containing these JavaScript assignments:
 
-LINK TO INDEX: [JavaScript Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/Week-1/Javascript/)
+Link to index [JavaScript Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/Week-1/Javascript/)
 ___
