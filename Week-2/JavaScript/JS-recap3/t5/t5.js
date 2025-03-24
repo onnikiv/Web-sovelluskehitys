@@ -7,7 +7,8 @@ const restaurants = [
     address: 'Latokartanonkaari 9 A',
     postalCode: '00790',
     city: 'Helsinki',
-    phone: '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
+    phone:
+      '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
     company: 'Sodexo',
     __v: 0,
   },
@@ -771,25 +772,37 @@ const restaurants = [
 
 // your code here
 
-// täää oliki recap 4 teht 2
-restaurants.sort(function (a, b) {
-  return a.name.toUpperCase() > b.name.toUpperCase ? 1 : -1;
-});
+/* eslint-disable no-undef */
 
-const table = document.querySelector('table');
+const map = L.map('map').setView([51.505, -0.09], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
 
-for (const restaurant of restaurants) {
-  // rivi
-  const tr = document.createElement('tr');
-  // nimisolu
-  const nameTd = document.createElement('td');
-  nameTd.innerText = restaurant.name;
-  // osoitesolu
-  const addressTd = document.createElement('td');
-  addressTd.innerText = restaurant.address;
-
-  const cityTd = document.createElement('td');
-  cityTd.innerText = restaurant.city;
-  tr.append(nameTd, addressTd, cityTd);
-  table.append(tr);
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
 }
+
+function success(pos) {
+  const crd = pos.coords;
+  mapEverything(crd.latitude, crd.longitude);
+}
+
+function mapEverything(latitude, longitude) {
+  console.log('Your Current Coordinates:');
+  console.log('latitude: ' + latitude + ', longitude:' + longitude);
+  console.log('Setting markers for restaurants...');
+  map.setView([latitude, longitude], 13);
+
+  for (const restaurant of restaurants) {
+    const restaurantCoord = restaurant.location.coordinates;
+    const marker = L.marker([restaurantCoord[1], restaurantCoord[0]]).addTo(
+      map
+    );
+    marker.bindPopup(`<h3>${restaurant.name}</h3><p>${restaurant.address}</p>`);
+  }
+}
+
+navigator.geolocation.getCurrentPosition(success, error);
