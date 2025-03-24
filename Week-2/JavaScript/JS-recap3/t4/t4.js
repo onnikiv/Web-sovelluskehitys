@@ -772,26 +772,44 @@ const restaurants = [
 ];
 
 // your code here
+const table = document.querySelector('table');
 
 const options = {
   maximumAge: 0,
+  timeout: 5000,
+  enableHighAccuracy: true,
 };
-
-function success(pos) {
-  const crd = pos.coords;
-  console.log(crd);
-}
 
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-const alkupiste = [24, 60];
+function success(pos) {
+  const crd = pos.coords;
+  console.log(crd);
 
-restaurants.sort(function (a, b) {
-  return distance(alkupiste, a.location.coordinates - distance(alkupiste, b.location.coordinates));
-});
+  const alkupiste = [crd.longitude, crd.latitude];
+  restaurants.sort(function (a, b) {
+    return (
+      distance(alkupiste, a.location.coordinates) - distance(alkupiste, b.location.coordinates)
+    );
+  });
+
+  for (const restaurant of restaurants) {
+    // rivi
+    const tr = document.createElement('tr');
+    // nimisolu
+    const nameTd = document.createElement('td');
+    nameTd.innerText = restaurant.name;
+    // osoitesolu
+    const addressTd = document.createElement('td');
+    addressTd.innerText = restaurant.address;
+
+    const cityTd = document.createElement('td');
+    cityTd.innerText = restaurant.city;
+    tr.append(nameTd, addressTd, cityTd);
+    table.append(tr);
+  }
+}
 
 navigator.geolocation.getCurrentPosition(success, error, options);
-
-console.log(restaurants);
