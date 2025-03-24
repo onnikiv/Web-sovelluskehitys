@@ -30,8 +30,7 @@ const todoList = [
 // add your code here
 const ul = document.querySelector('ul');
 
-for (const todo of todoList) {
-  // list-item, checkbox
+function createListItem(todo) {
   const listItem = document.createElement('li');
   const checkBox = document.createElement('input');
   const deleteBtn = document.createElement('button');
@@ -61,8 +60,6 @@ for (const todo of todoList) {
   ul.appendChild(listItem);
 }
 
-function createListItem() {}
-
 function removeItem(listItem, todo) {
   // poistetaan ul:stä + indexillä poistetaan myös todolistasta
   console.log(todo, 'REMOVED');
@@ -78,7 +75,6 @@ const addButton = document.querySelector('.add-btn');
 const modal = document.querySelector('dialog');
 
 addButton.addEventListener('click', () => {
-  console.log('Add');
   modal.style.display = 'block';
 });
 
@@ -91,6 +87,18 @@ submit.addEventListener('click', (event) => {
   // tungetaan task todoListan // input.valuella napataan teksti formista
   const task = {id: todoList.length + 1, task: input.value, completed: false};
   todoList.push(task);
+  // resetataan input alue ja vedetään modal pois näkyvistä
   input.value = '';
   modal.style.display = 'none';
+  // luodaan uusi task
+  createListItem(task);
+  console.log('Added new task...');
+  console.log(todoList);
 });
+
+// for loopilla luodaan list-itemit
+console.log('Luodaan list-itemit:');
+for (const todo of todoList) {
+  console.log(todo);
+  createListItem(todo);
+}
