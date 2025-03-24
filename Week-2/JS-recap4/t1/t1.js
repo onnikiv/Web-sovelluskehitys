@@ -61,6 +61,8 @@ for (const todo of todoList) {
   ul.appendChild(listItem);
 }
 
+function createListItem() {}
+
 function removeItem(listItem, todo) {
   // poistetaan ul:stä + indexillä poistetaan myös todolistasta
   console.log(todo, 'REMOVED');
@@ -82,7 +84,13 @@ addButton.addEventListener('click', () => {
 
 const submit = document.querySelector('button[type="submit"]');
 const input = document.querySelector('input[type="text"]');
-input.addEventListener('click', () => alert(input.value));
-submit.addEventListener('click', () => {
-  todoList.push();
+
+submit.addEventListener('click', (event) => {
+  // tärkee
+  event.preventDefault();
+  // tungetaan task todoListan // input.valuella napataan teksti formista
+  const task = {id: todoList.length + 1, task: input.value, completed: false};
+  todoList.push(task);
+  input.value = '';
+  modal.style.display = 'none';
 });
