@@ -1,4 +1,4 @@
-import {distance} from '../../../../lib/euclidean.js';
+import {distance} from '../../lib/euclidean.js';
 
 const restaurants = [
   {
@@ -9,7 +9,8 @@ const restaurants = [
     address: 'Latokartanonkaari 9 A',
     postalCode: '00790',
     city: 'Helsinki',
-    phone: '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
+    phone:
+      '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
     company: 'Sodexo',
     __v: 0,
   },
@@ -791,7 +792,8 @@ function success(pos) {
   const alkupiste = [crd.longitude, crd.latitude];
   restaurants.sort(function (a, b) {
     return (
-      distance(alkupiste, a.location.coordinates) - distance(alkupiste, b.location.coordinates)
+      distance(alkupiste, a.location.coordinates) -
+      distance(alkupiste, b.location.coordinates)
     );
   });
 
