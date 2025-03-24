@@ -7,8 +7,7 @@ const restaurants = [
     address: 'Latokartanonkaari 9 A',
     postalCode: '00790',
     city: 'Helsinki',
-    phone:
-      '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
+    phone: '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
     company: 'Sodexo',
     __v: 0,
   },
@@ -771,3 +770,26 @@ const restaurants = [
 ];
 
 // your code here
+
+// täää oliki recap 4 teht 2
+restaurants.sort(function (a, b) {
+  return a.name.toUpperCase() > b.name.toUpperCase ? 1 : -1;
+});
+
+const table = document.querySelector('table');
+
+for (const restaurant of restaurants) {
+  // rivi
+  const tr = document.createElement('tr');
+  // nimisolu
+  const nameTd = document.createElement('td');
+  nameTd.innerText = restaurant.name;
+  // osoitesolu
+  const addressTd = document.createElement('td');
+  addressTd.innerText = restaurant.address;
+
+  const cityTd = document.createElement('td');
+  cityTd.innerText = restaurant.city;
+  tr.append(nameTd, addressTd, cityTd);
+  table.append(tr);
+}
