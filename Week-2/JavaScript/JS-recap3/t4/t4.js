@@ -1,3 +1,5 @@
+import {distance} from '../../../../lib/euclidean.js';
+
 const restaurants = [
   {
     location: {type: 'Point', coordinates: [25.018456, 60.228982]},
@@ -7,8 +9,7 @@ const restaurants = [
     address: 'Latokartanonkaari 9 A',
     postalCode: '00790',
     city: 'Helsinki',
-    phone:
-      '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
+    phone: '+358 50 4653899 Ravintolan esimies +358 50 435 8072 Kokoustarjoilut /ravintola',
     company: 'Sodexo',
     __v: 0,
   },
@@ -771,3 +772,26 @@ const restaurants = [
 ];
 
 // your code here
+
+const options = {
+  maximumAge: 0,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+  console.log(crd);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+const alkupiste = [24, 60];
+
+restaurants.sort(function (a, b) {
+  return distance(alkupiste, a.location.coordinates - distance(alkupiste, b.location.coordinates));
+});
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+console.log(restaurants);
