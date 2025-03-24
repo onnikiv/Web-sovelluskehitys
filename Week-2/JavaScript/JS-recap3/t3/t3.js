@@ -1,37 +1,61 @@
-/*
+const targetElement = document.getElementById('target');
 
-Browser name and version. (e.g. Google Chrome, 114)
-(Operating system name.)
+function browser() {
+  const browser = document.createElement('p');
+  browser.textContent =
+    'Browser: ' +
+    navigator.userAgentData.brands[2].brand +
+    ', Version: ' +
+    navigator.userAgentData.brands[2].version;
+  targetElement.appendChild(browser);
+}
 
-Screen width and height.
+function operationSystem() {
+  const os = document.createElement('p');
+  os.textContent = 'Operating system: ' + navigator.userAgentData.platform;
+  targetElement.appendChild(os);
+}
 
-Available screen space for the browser.
+function screenSize() {
+  const screen = document.createElement('p');
+  screen.textContent =
+    'Current Screen width: ' + window.screen.width + ', Height: ' + window.screen.height;
+  targetElement.appendChild(screen);
 
-Current date and time. Use Finnish localization
-1. helmikuuta 2056 as date format
-Hours and minutes for time
+  const screenAvail = document.createElement('p');
+  screenAvail.textContent =
+    'Available Screen width: ' +
+    window.screen.availWidth +
+    ', Height: ' +
+    window.screen.availHeight;
+  targetElement.appendChild(screenAvail);
+}
 
-Place each item within its own <p> element, for example.
-*/
+function dateTime() {
+  const timeParagraph = document.createElement('p');
+  const dateParagraph = document.createElement('p');
+  const date = new Date();
+  const time = date;
 
-const div = document.getElementById('target');
+  const dateOptions = {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  };
 
-const date = new Date();
-const time = date;
+  const timeOptions = {
+    hour: 'numeric',
+    minute: 'numeric',
+  };
 
-const dateOptions = {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-};
+  dateParagraph.textContent = date.toLocaleDateString('fi', dateOptions);
+  timeParagraph.textContent = 'Klo: ' + time.toLocaleTimeString('fi', timeOptions);
 
-const timeOptions = {
-  hour: 'numeric',
-  minute: 'numeric',
-};
+  targetElement.appendChild(dateParagraph);
+  targetElement.appendChild(timeParagraph);
+}
 
-date.toLocaleDateString('fi', dateOptions);
-time.toLocaleTimeString('fi', timeOptions);
-
-const timeParagraph = document.createElement('p');
-const dateParagraph = document.createElement('p');
+browser();
+operationSystem();
+screenSize();
+dateTime();
