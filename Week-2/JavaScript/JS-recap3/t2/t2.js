@@ -28,3 +28,22 @@ const todoList = [
 ];
 
 // add your code here
+
+const ul = document.querySelector('ul');
+
+for (const todo in todoList) {
+  const listItem = document.createElement('li');
+  const checkBox = document.createElement('input');
+  checkBox.type = 'checkbox';
+  checkBox.id = 'todo-' + todoList[todo].id;
+  checkBox.checked = todoList[todo].completed;
+
+  const label = document.createElement('label');
+  label.htmlFor = checkBox.id;
+  label.textContent = todoList[todo].task;
+
+  listItem.appendChild(checkBox);
+  listItem.appendChild(label);
+
+  ul.appendChild(listItem);
+}
