@@ -37,10 +37,10 @@ for (const todo in todoList) {
   checkBox.type = 'checkbox';
   checkBox.id = 'todo-' + todoList[todo].id;
   checkBox.checked = todoList[todo].completed;
-
-  const lable = document.createElement('label');
-  lable.htmlFor = checkBox.id;
-  lable.insertAdjacentHTML('beforeend', todo.task);
   listItem.appendChild(checkBox);
+
+  const label = `<label for="${checkBox.id}">${todoList[todo].task}</label>`;
+  listItem.insertAdjacentHTML('beforeend', label);
+
   ul.appendChild(listItem);
 }
