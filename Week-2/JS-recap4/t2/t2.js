@@ -811,6 +811,9 @@ for (const restaurant of restaurants) {
   comp.textContent = restaurant.company;
 
   tr.addEventListener('click', () => {
+    for (const elem of document.querySelectorAll('.highlight')) {
+      elem.classList.remove('highlight');
+    }
     tr.classList.add('highlight');
 
     modal.innerHTML = '';
