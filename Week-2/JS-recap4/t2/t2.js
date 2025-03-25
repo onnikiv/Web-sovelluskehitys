@@ -770,4 +770,54 @@ const restaurants = [
   },
 ];
 
+/*
+Restaurant name
+Address
+Postal code
+City
+Phone number
+Company
+*/
+
 // your code here
+const table = document.querySelector('table');
+const modal = document.querySelector('dialog');
+
+restaurants.sort(function (a, b) {
+  return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
+});
+
+for (const restaurant of restaurants) {
+  // rivi
+  const tr = document.createElement('tr');
+  // nimisolu
+  const nameTd = document.createElement('td');
+  nameTd.innerText = restaurant.name;
+  // osoitesolu
+  const addressTd = document.createElement('td');
+  addressTd.innerText = restaurant.address;
+
+  const h3 = document.createElement('h3');
+  h3.textContent = restaurant.name;
+  const adr = document.createElement('p');
+  adr.textContent = restaurant.address;
+  const post = document.createElement('p');
+  post.textContent = restaurant.postalCode;
+  const city = document.createElement('p');
+  city.textContent = restaurant.city;
+  const pnum = document.createElement('p');
+  pnum.textContent = restaurant.phone;
+  const comp = document.createElement('p');
+  comp.textContent = restaurant.company;
+
+  tr.addEventListener('click', () => {
+    tr.classList.add('highlight');
+
+    modal.innerHTML = '';
+    modal.append(h3, adr, post, city, pnum, comp);
+    modal.showModal();
+  });
+
+  tr.append(nameTd, addressTd);
+  table.append(tr);
+}
