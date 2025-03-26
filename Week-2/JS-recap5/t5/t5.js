@@ -1,14 +1,73 @@
-import {fetchData} from '../../lib/fetchData.js';
+import {fetchData} from '../lib/../../lib/fetchData.js';
 
 const url = 'https://media2.edu.metropolia.fi/restaurant/api/v1';
+const table = document.querySelector('table');
+const modal = document.querySelector('dialog');
 let restaurants = [];
-let dailyMeals = [];
+
+function createRestaurantCells(restaurant, tr) {
+  const restaurantName = document.createElement('td');
+  restaurantName.innerText = restaurant.name;
+
+  const restaurantAddress = document.createElement('td');
+  restaurantAddress.innerText = restaurant.address;
+
+  const restaurantCity = document.createElement('td');
+  restaurantCity.innerText = restaurant.city;
+
+  tr.append(restaurantName, restaurantAddress, restaurantCity);
+}
+
+function createModalHtml(restaurant, modal) {
+  const nameH3 = document.createElement('h3');
+  nameH3.innerText = restaurant.name;
+  const addressP = document.createElement('p');
+  addressP.innerText = `${restaurant.address}, puhelin: ${restaurant.phone}`;
+
+  const restaurantInfo = `
+              <article class="restaurantInfo">
+                  <h3>${restaurant.name}</h3>
+                  <p><strong>Address:</strong> ${restaurant.address}</p>
+                  <p><strong>Postal Code:</strong> ${restaurant.postalCode}</p>
+                  <p><strong>City:</strong> ${restaurant.city}</p>
+                  <p><strong>Phone:</strong> ${restaurant.phone}</p>
+                  <p><strong>Company:</strong> ${restaurant.company}</p>
+                  <h4>${'-'.repeat(40)} Menu ${'-'.repeat(40)}</h4>
+              </article>
+              `;
+  modal.innerHTML = restaurantInfo;
+}
+
+function createMenuHtml(courses) {
+  let html = '';
+  for (const course of courses) {
+    html += `
+    <article class="course">
+        <p><strong>${course.name}</strong>,
+        Hinta: ${course.price},
+        Allergeenit: ${course.diets}</p>
+    </article>
+  `;
+  }
+
+  return html === ''
+    ? '<p><strong>Menu for this restaurant is unavailable.</strong>'
+    : html;
+}
 
 async function getRestaurants() {
   try {
-    restaurants = await fetchData(url + '/restaurants/');
+    restaurants = await fetchData(url + '/restaurants');
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+}
+
+async function getRestaurantMenu(id, lang) {
+  try {
+    return await fetchData(`${url}/restaurants/daily/${id}/${lang}`);
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -18,89 +77,34 @@ function sortRestaurants() {
   });
 }
 
-async function createMenuHTML(id) {
-  try {
-    let html = '';
-    const course = await getDailyMeals(id);
-    console.log(course, 'TÄÄÄÄÄÄÄ');
-
-    html += `
-    <article class="course">
-        <p><strong>${course.name}</strong>,
-        Hinta: ${course.price},
-        Allergeenit: ${course.diets}</p>
-    </article>
-  `;
-
-    console.log(html);
-
-    return html;
-  } catch (error) {}
-}
-
-async function getDailyMeals(id) {
-  try {
-    const restaurantID = id;
-    const lang = 'fi';
-
-    dailyMeals = await fetchData(
-      `${url}/restaurants/daily/${restaurantID}/${lang}`
-    );
-
-    return dailyMeals;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function shaib() {
-  const table = document.querySelector('table');
-  const modal = document.querySelector('dialog');
-
+function fillTable() {
   for (const restaurant of restaurants) {
-    // rivi
     const tr = document.createElement('tr');
-    // nimisolu
-    const nameTd = document.createElement('td');
-    nameTd.innerText = restaurant.name;
-    // osoitesolu
-    const addressTd = document.createElement('td');
-    addressTd.innerText = restaurant.address;
-
-    const h3 = document.createElement('h3');
-    h3.textContent = restaurant.name;
-    const adr = document.createElement('p');
-    adr.textContent = restaurant.address;
-    const post = document.createElement('p');
-    post.textContent = restaurant.postalCode;
-    const city = document.createElement('p');
-    city.textContent = restaurant.city;
-    const pnum = document.createElement('p');
-    pnum.textContent = restaurant.phone;
-    const comp = document.createElement('p');
-    comp.textContent = restaurant.company;
-
-    tr.addEventListener('click', async () => {
-      for (const elem of document.querySelectorAll('.highlight')) {
-        elem.classList.remove('highlight');
-      }
-      tr.classList.add('highlight');
-
-      console.log(restaurant._id);
-
-      modal.innerHTML = '';
+    tr.addEventListener('click', async function () {
       try {
-        const menuHTML = await createMenuHTML(restaurant._id);
-        console.log(menuHTML);
-        modal.innerHTML += menuHTML;
+        for (const elem of document.querySelectorAll('.highlight')) {
+          elem.classList.remove('highlight');
+        }
+
+        tr.classList.add('highlight');
+
+        const coursesResponse = await getRestaurantMenu(restaurant._id, 'fi');
+
+        const menuHtml = createMenuHtml(coursesResponse.courses);
+
+        modal.innerHTML = '';
 
         modal.showModal();
+
+        createModalHtml(restaurant, modal);
+
+        modal.insertAdjacentHTML('beforeend', menuHtml);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     });
 
-    tr.append(nameTd, addressTd);
+    createRestaurantCells(restaurant, tr);
     table.append(tr);
   }
 }
@@ -109,9 +113,9 @@ async function main() {
   try {
     await getRestaurants();
     sortRestaurants();
-    shaib();
+    fillTable();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
