@@ -5,16 +5,16 @@ async function errorHandling() {
   };
 
   const url = 'https://reqres.in/api/unknown/23';
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
 
   // GET
   try {
-    const response = await fetch(url);
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`GET request failed with status: ${response.status}`);
     }
@@ -26,8 +26,13 @@ async function errorHandling() {
 
   // POST
   try {
-    options.method = 'POST';
-    options.body = JSON.stringify(user);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    };
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`POST request failed with status: ${response.status}`);
@@ -40,8 +45,14 @@ async function errorHandling() {
 
   // PUT
   try {
-    options.method = 'PUT';
-    options.body = JSON.stringify(user);
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    };
+
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`PUT request failed with status: ${response.status}`);
@@ -54,8 +65,13 @@ async function errorHandling() {
 
   // DELETE
   try {
-    options.method = 'DELETE';
-    delete options.body;
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`DELETE request failed with status: ${response.status}`);
