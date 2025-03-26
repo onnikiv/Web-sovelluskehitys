@@ -1,5 +1,3 @@
-import {fetchData} from '../../lib/fetchData.js';
-
 async function init() {
   try {
     const user = {
@@ -16,8 +14,14 @@ async function init() {
       body: JSON.stringify(user),
     };
 
-    const response = await fetchData(url, options);
-    console.log(response);
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.error('An error occurred:', error);
   }
