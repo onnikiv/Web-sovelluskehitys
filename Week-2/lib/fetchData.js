@@ -11,6 +11,5 @@ export async function fetchData(url, options) {
   if (!response.ok) {
     throw new Error(`${response.statusText}, code: ${response.json}`);
   }
-  const json = await response.json;
-  return json;
+  return await response.json();
 }
