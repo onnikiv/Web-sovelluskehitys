@@ -28,6 +28,10 @@ end_of_line = lf
 [*]
 trim_trailing_whitespace = true
 
+# Override for Markdown files
+[*.md]
+trim_trailing_whitespace = false
+
 # New line at the end of the file
 [*]
 insert_final_newline = true
