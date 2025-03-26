@@ -1,2 +1,8 @@
-# Week 2: JavaScript Recaps 3, 4, 5 ETC
-Link to index: [JavaScript Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/Week-2/)
+# Week 2 - JavaScript
+
+Link to my Index: [Javascript Assignments](https://users.metropolia.fi/~onnikiv/Web-Sovelluskehitys/Week-2/)
+
+
+- **JS Recap 3**: [DOM Manipulation](#)
+- **JS Recap 4**: Event Handling
+- **JS Recap 5**: AJAX
