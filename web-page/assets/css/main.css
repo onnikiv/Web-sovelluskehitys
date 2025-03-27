@@ -42,22 +42,33 @@ header button:hover {
   margin: 0 auto;
 }
 
-table {
+table#menu {
   border-collapse: collapse;
   border-spacing: 0;
-  margin: 0;
+  margin: 0 auto;
+  margin-top: 1%;
   padding: 0;
   table-layout: fixed;
-  width: 100%;
+  text-align: center;
 }
 
-th {
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
+#menu a {
+  color: aliceblue;
+  margin: 0;
+  padding: 0;
   font-weight: normal;
   padding: 0.5em 1em;
   text-align: left;
   font-weight: bolder;
+  background-color: blueviolet;
+  border-radius: 20%;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#menu a:hover {
+  background-color: rgb(194, 129, 255);
+  color: rgb(116, 116, 116);
 }
 
 td {

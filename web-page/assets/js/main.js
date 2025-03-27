@@ -5,3 +5,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution:
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
+
+const menuWeekDay = document.querySelector('#menu');
+menuWeekDay.addEventListener('click', () => {
+  const p = (document.createElement('p').innerHTML = 'test');
+
+  menuWeekDay.append(p);
+});
