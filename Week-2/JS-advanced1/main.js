@@ -11,7 +11,7 @@ const createMenuHtml = (courses) => {
   for (const {name, price, diets} of courses) {
     html += `<article class="course">
       <p><strong>${name}</strong>,
-      Hinta: ${price},
+      Hinta: ${price ? price : ''},
       Allergeenit: ${diets}</p>
     </article>`;
   }
