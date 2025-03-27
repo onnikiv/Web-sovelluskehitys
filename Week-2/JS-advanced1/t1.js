@@ -1,44 +1,46 @@
-import {fetchData} from '../../lib/fetchData.js';
+import {fetchData} from '../lib/fetchData.js';
 
 const url = 'https://media2.edu.metropolia.fi/restaurant/api/v1';
 const table = document.querySelector('table');
 const modal = document.querySelector('dialog');
 let restaurants = [];
 
-function createRestaurantCells(restaurant, tr) {
+const restaurantRow = ({name, address, city}, tr) => {
   const restaurantName = document.createElement('td');
-  restaurantName.innerText = restaurant.name;
-
   const restaurantAddress = document.createElement('td');
-  restaurantAddress.innerText = restaurant.address;
-
   const restaurantCity = document.createElement('td');
-  restaurantCity.innerText = restaurant.city;
+
+  restaurantName.innerText = name;
+  restaurantAddress.innerText = address;
+  restaurantCity.innerText = city;
 
   tr.append(restaurantName, restaurantAddress, restaurantCity);
-}
+};
 
-function createModalHtml(restaurant, modal) {
-  const nameH3 = document.createElement('h3');
-  nameH3.innerText = restaurant.name;
-  const addressP = document.createElement('p');
-  addressP.innerText = `${restaurant.address}, puhelin: ${restaurant.phone}`;
+const createModalHtml = (
+  {name, address, phone, city, postalCode, company},
+  modal
+) => {
+  const nameElement = document.createElement('h3');
+  const addressElement = document.createElement('p');
+  nameElement.innerText = name;
+  addressElement.innerText = `${address}, puhelin: ${phone}`;
 
   const restaurantInfo = `
               <article class="restaurantInfo">
-                  <h3>${restaurant.name}</h3>
-                  <p><strong>Address:</strong> ${restaurant.address}</p>
-                  <p><strong>Postal Code:</strong> ${restaurant.postalCode}</p>
-                  <p><strong>City:</strong> ${restaurant.city}</p>
-                  <p><strong>Phone:</strong> ${restaurant.phone}</p>
-                  <p><strong>Company:</strong> ${restaurant.company}</p>
+                  <h3>${name}</h3>
+                  <p><strong>Address:</strong> ${address}</p>
+                  <p><strong>Postal Code:</strong> ${postalCode}</p>
+                  <p><strong>City:</strong> ${city}</p>
+                  <p><strong>Phone:</strong> ${phone}</p>
+                  <p><strong>Company:</strong> ${company}</p>
                   <h4>${'-'.repeat(40)} Menu ${'-'.repeat(40)}</h4>
               </article>
               `;
   modal.innerHTML = restaurantInfo;
-}
+};
 
-function createMenuHtml(courses) {
+const createMenuHtml = (courses) => {
   let html = '';
   for (const course of courses) {
     html += `
@@ -49,35 +51,34 @@ function createMenuHtml(courses) {
     </article>
   `;
   }
-
   return html === ''
     ? '<p><strong>Menu for this restaurant is unavailable.</strong>'
     : html;
-}
+};
 
-async function getRestaurants() {
+const getRestaurants = async () => {
   try {
     restaurants = await fetchData(url + '/restaurants');
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-async function getRestaurantMenu(id, lang) {
+const getRestaurantMenu = async (id, lang) => {
   try {
     return await fetchData(`${url}/restaurants/daily/${id}/${lang}`);
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-function sortRestaurants() {
+const sortRestaurants = () => {
   restaurants.sort(function (a, b) {
     return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
   });
-}
+};
 
-function fillTable() {
+const fillTable = () => {
   for (const restaurant of restaurants) {
     const tr = document.createElement('tr');
     tr.addEventListener('click', async function () {
@@ -104,12 +105,12 @@ function fillTable() {
       }
     });
 
-    createRestaurantCells(restaurant, tr);
+    restaurantRow(restaurant, tr);
     table.append(tr);
   }
-}
+};
 
-async function main() {
+const main = async () => {
   try {
     await getRestaurants();
     sortRestaurants();
@@ -117,6 +118,6 @@ async function main() {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 main();
