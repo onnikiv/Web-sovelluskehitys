@@ -28,14 +28,26 @@ const fillWeekTable = () => {
 
   weekdayTableRows.forEach((row) => {
     row.querySelectorAll('a').forEach((link) => {
+      const selectedDay = link.textContent;
+      console.log(selectedDay);
       link.addEventListener('click', () => {
-        console.log(link.textContent);
+        if (link.classList.contains('highlight')) {
+          link.classList.remove('highlight');
+          console.log(link.classList);
+        } else {
+          document.querySelectorAll('.highlight').forEach((element) => {
+            element.classList.remove('highlight');
+          });
+        }
+        link.classList.add('highlight');
+
+        openMenuForDay(selectedDay);
       });
     });
   });
 };
 
-const login = () => {
+const loginElement = () => {
   const loginButton = document.querySelector('#login');
   const loginWindow = document.querySelector('#login-modal');
   let open = false;
@@ -56,6 +68,14 @@ const login = () => {
   });
 };
 
-login();
+const tableBodyTr = document.createElement('tr');
 
+const openMenuForDay = (selectedDay) => {
+  const tableBody = document.querySelector('tbody');
+  tableBodyTr.innerHTML = ``;
+  tableBodyTr.innerHTML = `TEST ${selectedDay}`;
+  tableBody.append(tableBodyTr);
+};
+
+loginElement();
 fillWeekTable();

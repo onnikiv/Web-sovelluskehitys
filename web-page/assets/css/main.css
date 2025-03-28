@@ -98,6 +98,18 @@ td {
 #map {
   height: 500px;
   width: 50%;
+  padding: 0;
+  position: fixed;
+  left: 0;
   display: block;
-  margin: 0 auto;
+  position: relative;
+  /* Center the map horizontally */
+  left: 25%;
+}
+
+#menu a.highlight {
+  color: red;
+  background-color: #383838;
+  font-weight: bold;
+  font-size: large;
 }
