@@ -23,7 +23,6 @@ const fillWeekTable = () => {
         link.classList.add('current-day');
         link.innerHTML = `Today`;
       }
-      //link.innerHTML += ` ${dayNum}.0${month} `;
     });
   });
 
@@ -58,4 +57,5 @@ const login = () => {
 };
 
 login();
+
 fillWeekTable();
