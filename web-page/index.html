@@ -20,34 +20,28 @@
   </head>
   <body>
     <header>
-      <h1 id="page-title">Student Restaurants</h1>
-      <button id="search-button">Search</button>
+      <a id="page-title" href="index.html">Student Restaurants</a>
+      <div></div>
       <button id="language-button">FI</button>
       <button id="login">Log in</button>
     </header>
 
     <div id="map"></div>
-
-    <!-- Dropdown menu for selecting a company
-    <select name="company" id="company-select">
-      <option value="All">All</option>
-      <option value="Sodexo">Sodexo</option>
-      <option value="Compass Group">Compass</option>
-    </select>
-    -->
+    <dialog id="login-modal"></dialog>
 
     <table id="menu">
       <thead>
-        <tr>
-          <th><a href="#">Monday</a></th>
-          <th><a href="#">Tuesday</a></th>
-          <th><a href="#">Wednesday</a></th>
-          <th><a href="#">Thursday</a></th>
-          <th><a href="#">Friday</a></th>
-          <th><a href="#">Saturday</a></th>
-          <th><a href="#">Sunday</a></th>
+        <tr class="weekday">
+          <th><a id="monday" href="#">Mon</a></th>
+          <th><a id="tuesday" href="#">Tue</a></th>
+          <th><a id="wednesday" href="#">Wed</a></th>
+          <th><a id="thursday" href="#">Thu</a></th>
+          <th><a id="friday" href="#">Fri</a></th>
+          <th><a id="saturday" href="#">Sat</a></th>
+          <th><a id="sunday" href="#">Sun</a></th>
         </tr>
       </thead>
+      <tbody></tbody>
     </table>
     <!-- modal -->
     <dialog>
