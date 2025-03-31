@@ -12,7 +12,7 @@ body {
 header {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   background-color: blueviolet;
   border-bottom: 2px solid black;
@@ -25,7 +25,6 @@ header {
 #page-title {
   color: #f0f0f0;
   text-decoration: none;
-  white-space: nowrap;
   transition: background-color 0.3s, color 0.3s;
 }
 #page-title:hover {
@@ -46,6 +45,7 @@ header .header-buttons button {
 }
 header .header-buttons button:hover {
   color: black;
+  background-color: rgb(141, 62, 216);
   transition: color 0.3s, color 0.3s;
 }
 
@@ -84,27 +84,50 @@ td {
   padding: 0.5em 1em;
 }
 
-#login-modal {
+.center-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+.restaurant-box {
   height: 500px;
-  width: 50%;
+  width: 33%;
+  padding: 0;
+  position: fixed;
+  display: block;
+  position: relative;
+
+}
+
+#login-modal {
+  height: 300px;
+  width: 300px;
   padding: 0;
   background-color: white;
   position: fixed;
-  top: 10%;
-  left: 0;
+  top: 12%;
+  left: 73%;
   z-index: 1000;
+
 }
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
 
 #map {
   height: 500px;
-  width: 50%;
+  width: 30%;
   padding: 0;
   position: fixed;
   left: 0;
   display: block;
   position: relative;
-  /* Center the map horizontally */
-  left: 25%;
 }
 
 #menu a.highlight {
