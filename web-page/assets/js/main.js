@@ -77,5 +77,28 @@ const openMenuForDay = (selectedDay) => {
   tableBody.append(tableBodyTr);
 };
 
-loginElement();
-fillWeekTable();
+const getRestaurants = async () => {
+  try {
+    restaurants = await fetchData(url + '/restaurants');
+  } catch (error) {
+    console.log(error);
+    errorBox.textContent =
+      'Failed to fetch restaurants. Please try again later. \n Be sure to be Connected to the schools network ';
+    errorBox.showModal();
+  }
+};
+
+const main = async () => {
+  try {
+    loginElement();
+    fillWeekTable();
+    await getRestaurants();
+    sortRestaurants();
+    fillTable(restaurants);
+    companySelect();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+main();
